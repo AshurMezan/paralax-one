@@ -1,6 +1,35 @@
 @charset "UTF-8";
+/* Подключение Regular */
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Regular.woff") format("woff");
+  font-weight: 400; /* Normal */
+  font-style: normal;
+  font-display: swap; /* Для быстрой загрузки */
+}
+/* Подключение Bold */
+@font-face {
+  font-family: "Roboto";
+  src: url("../fonts/Roboto/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Bold.woff") format("woff");
+  font-weight: 700; /* Bold */
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gravitas One"; /* Произвольное имя шрифта */
+  src: url("../fonts/Gravitas_One/GravitasOne-Regular.ttf") format("truetype");
+  font-weight: 400; /* Обычное начертание */
+  font-style: normal;
+  font-display: swap; /* Оптимизация загрузки */
+}
 html {
   box-sizing: border-box;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 *,
@@ -39,6 +68,10 @@ a {
   column-gap: 3.3em;
 }
 
+.top {
+  height: 400vh;
+}
+
 .top__layer {
   height: 100vh;
   width: 100vw;
@@ -47,6 +80,14 @@ a {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  animation-timing-function: linear;
+  animation-timeline: scroll();
+  animation-fill-mode: both;
+  animation-range: 0 400vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .top__layer:nth-child(1) {
   background-image: url("../img/cave_layer_5.png");
@@ -64,24 +105,140 @@ a {
   background-image: url("../img/ellipse_layer_1.png");
 }
 
-/* Подключение Regular */
-@font-face {
-  font-family: "Roboto";
-  src: url("../fonts/Roboto/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Regular.woff") format("woff");
-  font-weight: 400; /* Normal */
-  font-style: normal;
-  font-display: swap; /* Для быстрой загрузки */
+.top__layer_five {
+  animation-name: top__layer_five;
 }
-/* Подключение Bold */
-@font-face {
-  font-family: "Roboto";
-  src: url("../fonts/Roboto/Roboto-Bold.woff2") format("woff2"), url("../fonts/Roboto/Roboto-Bold.woff") format("woff");
-  font-weight: 700; /* Bold */
-  font-style: normal;
-  font-display: swap;
+
+@keyframes top__layer_five {
+  to {
+    scale: 1.25;
+  }
+}
+.top__layer_four {
+  animation-name: top__layer_four;
+}
+
+@keyframes top__layer_four {
+  to {
+    scale: 1.35;
+  }
+}
+.top__layer_three {
+  animation-name: top__layer_three;
+}
+
+@keyframes top__layer_three {
+  to {
+    scale: 1.5;
+  }
+}
+.top__layer_two {
+  animation-name: top__layer_two;
+}
+
+@keyframes top__layer_two {
+  to {
+    scale: 2;
+  }
+}
+.top__layer_one {
+  animation-name: top__layer_one;
+}
+
+@keyframes top__layer_one {
+  to {
+    scale: 2.5;
+  }
 }
 .roboto {
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   font-style: normal;
+}
+
+.top__text {
+  text-align: center;
+  margin: 0;
+  font-family: "Gravitas One", cursive; /* cursive — фолбэк-шрифт */
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+  margin-top: -7.2em;
+  animation-name: text;
+  opacity: 0;
+  animation-timeline: scroll();
+  animation-fill-mode: both;
+  animation-range: 200 300vh;
+  animation-timing-function: linear;
+}
+.top__text h1 {
+  text-transform: uppercase;
+  font-size: 6.5em;
+  margin-bottom: -0.1em;
+}
+
+@keyframes text {
+  to {
+    opacity: 1;
+  }
+}
+.text {
+  font-size: 1.3em;
+}
+
+.arrows-container {
+  border: 1px solid #fff;
+  background-color: rgba(30, 30, 30, 0.7);
+  border-radius: 50%;
+  width: 4.3em;
+  height: 4.3em;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  bottom: 50px;
+  right: 0;
+}
+
+.item-arrows {
+  width: 17px;
+  height: 17px;
+  position: relative;
+  margin: 19px auto;
+}
+
+.item-arrows::before,
+.item-arrows::after {
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid #fff;
+  border-left: 2px solid #fff;
+  width: 100%;
+  height: 100%;
+  animation: arrow 3s linear infinite;
+}
+
+.item-arrows::after {
+  animation: arrow 3s linear infinite -1.5s;
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 0;
+    transform: translate(0, -10px) rotate(-45deg);
+  }
+  10% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0, 0px) rotate(-45deg);
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(0, 10px) rotate(-45deg);
+  }
 }
